@@ -51,11 +51,13 @@ Cloud SDK uses the right project for all the commands in this notebook.
 
 ## Prepare your template files
 
-You can set this up manually in your Google Cloud account, but [this notebook]("neo4j_dataflow_bigquery.ipynb") will walk you through the setup
+[This notebook]("neo4j_dataflow_bigquery.ipynb") will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
 
 ## Set up your Dataflow job
 
-Once your template files are uploaded to the storage buckets you can continue on to configure and set up your Dataflow job
+Once your template files are uploaded to the storage buckets you can continue on to configure and set up your Dataflow job. 
+
+Detailed steps with screenshots coming soon
 
 1. Go to the Dataflow console
 2. Select "Create New Job"
