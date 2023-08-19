@@ -15,7 +15,7 @@ In order complete this lab you will need the following you will need a Google Cl
 If you don't have access to Neo4j Aura you can alternatively use any running instance of Neo4j as long as it is accessible from the internet and you can provide the authentication credentials.
 
 ## Dataset
-For this lab we will use the [Northwind database] (https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
+For this lab we will use the [Northwind database](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 
 The Northwind database is a sample database originally created by Microsoft and used as the basis for tutorials and demos of their own products although it has been commonly used by many in the industry for decades and used for similar purposes. 
 
