@@ -69,9 +69,9 @@ Once your template files are uploaded to the storage buckets you can continue on
 ![02-select_template.png](images/02-select_template.png)
 
 3. **Fill in the required parameters** 
-    - Browse to your storage bucket and select your job spec template
-    - Browse to your storage bucket and select your Neo4j connection template
-    - The Optional "JSON" field just enter empty curly brackets "{}"
+    * Browse to your storage bucket and select your job spec template
+    * Browse to your storage bucket and select your Neo4j connection template
+    * The Optional "JSON" field just enter empty curly brackets "{}"
 
 ![03-configure_paramerters.png](images/03-configure_paramerters.png)
 
