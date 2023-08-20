@@ -45,8 +45,6 @@ This [tutorial](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-vertex-
 1. Enter your project ID in the cell below. Then run the cell to make sure the
 Cloud SDK uses the right project for all the commands in this notebook.
 
-**Note**: Jupyter runs lines prefixed with `!` as shell commands, and it interpolates Python variables prefixed with `$` into these commands.
-
 ## Prepare your template files
 
 [This notebook]("neo4j_dataflow_bigquery.ipynb") will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
