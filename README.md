@@ -25,9 +25,7 @@ The Northwind database contains the sales data for a fictitious company called â
 
 ## Deploy your Neo4j Instance
 
-If you haven't done so already you will need to deploy an instance of Neo4j. This can be running anywhere in the world as long as it is accessible from the Internet. 
-
-For this lab, however, we recommend deploying an instance of Aura from Google Cloud Platform. The links below will show you how to deploy an instance of AuraDS from Google Cloud Marketplace, however for this lab you can also deploy AuraDB Free. 
+For this lab, we recommend deploying an instance of Aura from Google Cloud Platform. The links below will show you how to deploy an instance of AuraDS from Google Cloud Marketplace, however for this lab you can also deploy AuraDB Free. 
 
 This [tutorial](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-vertex-ai/tree/main/Lab%201%20-%20Deploy%20Neo4j#lab-1---deploy-neo4j) and [this video](https://youtu.be/27PMDtlSP4w) will guide you through the necessary steps. 
 
