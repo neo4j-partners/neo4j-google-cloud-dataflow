@@ -5,7 +5,7 @@ Tutorial and resources for setting up Google Cloud Dataflow with Neo4j and BigQu
 In this tutorial, you will learn how to set up Google Cloud Dataflow to extract, transform, and load data from Google BigQuery into a Neo4j graph database instance.
 
 ## Preparation
-In order complete this lab you will need the following you will need a Google Cloud Platform account with permission and access to deploy the following services:
+In order complete this lab you will need a Google Cloud Platform account with permission and access to deploy the following services:
 
 1. Neo4j Aura: https://console.cloud.google.com/marketplace/product/endpoints/prod.n4gcp.neo4j.io
 2. Cloud Storage: https://console.cloud.google.com/storage/
