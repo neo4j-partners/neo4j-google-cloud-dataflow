@@ -17,7 +17,7 @@ If you don't have access to Neo4j Aura you can alternatively use any running ins
 ## Dataset
 For this lab we will use the [Northwind database](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 
-The Northwind database is a sample database originally created by Microsoft and used as the basis for tutorials and demos of their own products although it has been commonly used by many in the industry for decades and used for similar purposes. 
+The Northwind database is a sample database originally created by Microsoft and used as the basis for tutorials and demos of their own products although it has been commonly used for decades by many others in the industry for similar purposes. 
 
 The Northwind database contains the sales data for a fictitious company called “Northwind Traders,” which imports and exports specialty foods from around the world. 
 
