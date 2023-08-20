@@ -71,7 +71,7 @@ Once your template files are uploaded to the storage buckets you can continue on
 
 ![03-configure_paramerters.png](images/03-configure_paramerters.png)
 
-3. **Click "Run Job" and now wait for the job to finish (~5-10 minutes for this demo)**
+3. **Click "Run Job" and now wait for the job to finish (about 5-10 minutes for this demo)**
 
 ![04-kickoff_job.png)](images/04-kickoff_job.png)
 
