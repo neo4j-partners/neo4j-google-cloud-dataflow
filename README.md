@@ -57,16 +57,19 @@ Cloud SDK uses the right project for all the commands in this notebook.
 
 Once your template files are uploaded to the storage buckets you can continue on to configure and set up your Dataflow job. 
 
-1. Go to the Dataflow console
+1. **Go to the Dataflow console**
     - Select "Create New Job"
     - Give your job a name and select the region
 
-![Drag Racing](images/01-name_region.png)
+![01-name_region.png](images/01-name_region.png)
 
-2. Click on the dropdown menu and type "neo4j"
+2. **Click on the dropdown menu and type "neo4j"**
     - Select the "Google Cloud to Neo4j" template
     - The required fields will appear
        - Browse to your storage bucket and select your job spec template
        - Browse to your storage bucket and select your Neo4j connection template
        - The Optional "JSON" field just enter empty curly brackets "{}"
+
+![01-name_region.png](images/01-name_region.png)
+
 7. Click "Run Job" and now wait for the job to finish (~5-10 minutes for this demo)
