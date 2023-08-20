@@ -75,7 +75,7 @@ Once your template files are uploaded to the storage buckets you can continue on
 
 ![04-kickoff_job.png)](images/04-kickoff_job.png)
 
-4. **The job is complete once all of the stages turn green and the job status field says "Successful".**
+4. **The job is complete once all of the stages turn green and the job status field says "Succeeded".**
 
 ![05-job_succeeded.png)](images/05-job_succeeded.png)
 
