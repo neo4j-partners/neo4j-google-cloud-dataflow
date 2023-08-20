@@ -12,7 +12,7 @@ In order complete this lab you will need a Google Cloud Platform account with pe
 3. Dataflow: https://console.cloud.google.com/dataflow/
 4. BigQuery: https://console.cloud.google.com/bigquery
 
-If you don't have access to Neo4j Aura you can alternatively use any running instance of Neo4j as long as it is accessible from the internet and you can provide the authentication credentials.
+If you don't have access to Neo4j Aura from Google Cloud you can also deploy an instance of [Neo4j Aura Free](https://neo4j.com/cloud/aura-free/) for this lab.
 
 ## Dataset
 For this lab we will use the [Northwind database](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
