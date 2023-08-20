@@ -69,20 +69,20 @@ Once your template files are uploaded to the storage buckets you can continue on
 ![02-select_template.png](images/02-select_template.png)
 
 3. **Fill in the required parameters** 
-       - Browse to your storage bucket and select your job spec template
-       - Browse to your storage bucket and select your Neo4j connection template
-       - The Optional "JSON" field just enter empty curly brackets "{}"
+    - Browse to your storage bucket and select your job spec template
+    - Browse to your storage bucket and select your Neo4j connection template
+    - The Optional "JSON" field just enter empty curly brackets "{}"
 
 ![03-configure_paramerters.png](images/03-configure_paramerters.png)
 
-3. Click "Run Job" and now wait for the job to finish (~5-10 minutes for this demo)
+3. **Click "Run Job" and now wait for the job to finish (~5-10 minutes for this demo)**
 
 ![04-kickoff_job.png)](images/04-kickoff_job.png)
 
-4. The job is complete once all of the stages turn green and the job status field says "Successful".
+4. **The job is complete once all of the stages turn green and the job status field says "Successful".**
 
 ![05-job_succeeded.png)](images/05-job_succeeded.png)
 
-5. Now you can log into the Neo4j instance and the graph is ready to explore!
+5. **Now you can log into the Neo4j instance and the graph is ready to explore!**
 
 ![06-explore_the_graph.png)](images/06-explore_the_graph.png)
