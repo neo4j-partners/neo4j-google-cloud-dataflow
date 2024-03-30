@@ -12,8 +12,10 @@ In order complete this lab you will need a Google Cloud Platform account with pe
 3. Dataflow: https://console.cloud.google.com/dataflow/
 4. BigQuery: https://console.cloud.google.com/bigquery
 
-## Dataset
-For this lab we will use the [Northwind database](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
+## Datasets
+There are some sample templates and demo datasets available in the [datasets directory](datasets/) of this repository.
+
+In this example we will use the [Northwind database](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 
 The Northwind database is a sample database originally created by Microsoft and used as the basis for tutorials and demos of their own products although it has been commonly used for decades by many others in the industry for similar purposes. 
 

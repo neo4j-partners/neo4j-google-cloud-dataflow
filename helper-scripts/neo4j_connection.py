@@ -1,9 +1,9 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 
 import os
 import json
 import sys
-#import dotenv
+import dotenv
 
 def aura_creds(dotenv_file):
     from dotenv import load_dotenv

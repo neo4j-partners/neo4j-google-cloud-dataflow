@@ -1,0 +1,71 @@
+{
+  "config": {
+    "reset_db": true,
+    "index_all_properties": false
+  },
+  "sources": [
+    {
+        "type": "bigquery",
+        "name": "stations",
+        "query": "SELECT ID, Station_Name, Latitude, Longitude, Zone, Postcode FROM neo4jbusinessdev.london_transport.london_stations"
+    },
+    {
+      "type": "bigquery",
+      "name": "tube_lines",
+      "query": "SELECT Tube_Line, From_Station, To_Station FROM neo4jbusinessdev.london_transport.london_tube_lines"
+    }
+  ],
+  "targets": [
+    {
+      "node": {
+        "source": "stations",
+        "name": "Station",
+        "mode": "append",
+        "transform": {
+          "group": true
+        },
+        "mappings": {
+          "labels": [
+            "\"Station\""
+          ],
+          "properties": {
+            "keys": [
+              {"ID": "station_id"}
+            ],
+            "strings": [
+              {"Station_Name": "name"},
+              {"Zone": "zone"},
+              {"Postcode": "postcode"}
+            ],
+            "floats": [
+              {"Longitude": "longitude"},
+              {"Latitude": "latitude"}
+            ]
+          }
+        }
+      }
+    },
+    {
+        "edge": {
+          "source": "tube_lines",
+          "name": "Tube Lines",
+          "mode": "merge",
+          "transform": {
+            "group": true
+          },
+          "mappings": {
+            "type": "\"CONNECTED_TO\"",
+            "source": {
+              "label":"\"Station\"", 
+              "key": {"From_Station": "name"}
+            },
+            "target": {
+              "label":"\"Station\"", 
+              "key": {"To_Station": "name"}
+            },
+            "properties": {}
+          }
+        }
+      }
+  ]
+}
