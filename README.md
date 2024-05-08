@@ -62,21 +62,30 @@ Once your template files are uploaded to the storage buckets you can continue on
 
 ![02-select_template.png](images/02-select_template.png)
 
-3. **Fill in the required parameters** 
+3. **Configure Dataflow job specification template** 
 - Browse to your storage bucket and select your job spec template
-- Browse to your storage bucket and select your Neo4j connection template
-- The "Options JSON" field will be optional in the future, for now just enter "{}" for an empty JSON object
 
-![03-configure_paramerters.png](images/03-configure_paramerters.png)
+![03-configure_job_spec.png](images/03-configure_job_spec.png)
 
-3. **Click "Run Job" and now wait for the job to finish (about 5-10 minutes for this demo)**
+4. **Configure the Neo4j connection template** 
+- Scroll down and open up the "Optional Parameters" section
+- Fill in the location of the Neo4j connections template file or if you are using Google Secret Manager, enter the name of the Secret ID. 
+- __NOTE: Although these two individual fields are "Optional", it is required to fill in one of them.__
 
-![04-kickoff_job.png)](images/04-kickoff_job.png)
+![04-configure_connections.png](images/04-configure_connections.png)
 
-4. **The job is complete once all of the stages turn green and the job status field says "Succeeded".**
+5. **Scroll down to the bottom of the page and click "Run Job" and now wait for the job to finish (about 5-10 minutes for this demo)**
 
-![05-job_succeeded.png)](images/05-job_succeeded.png)
+![05-kickoff_job.png)](images/05-kickoff_job.png)
 
-5. **Now you can log into the Neo4j instance and the graph is ready to explore!**
+6. **The job is complete once all of the stages turn green and the job status field says "Succeeded".**
 
-![06-explore_the_graph.png)](images/06-explore_the_graph.png)
+![06-job_succeeded.png)](images/06-job_succeeded.png)
+
+7. **Now you can log into the Neo4j instance and the graph is ready to explore!**
+
+![07-explore_the_graph.png)](images/07-explore_the_graph.png)
+
+8. You can also explore the graph using __Neo4j Bloom__.
+
+![08-explore_with_bloom.png)](images/08-explore_with_bloom.png)
