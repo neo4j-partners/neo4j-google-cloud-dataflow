@@ -47,6 +47,24 @@ Cloud SDK uses the right project for all the commands in this notebook.
 
 [This notebook](notebook/neo4j_dataflow_bigquery.ipynb) will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
 
+You can also do this step manually. In order to deploy a Dataflow job for Neo4j you will need two JSON templates:
+
+1. A Dataflow job specification template. This template specifies where and how data is extracted from the sources and subsequently transformed and loaded into our target graph model. For this demo we will use [this job spec template](datasets/templates/transport_for_london/london_transport_job_spec_custom_query.json). 
+
+2. A Neo4j connnection template. This template contans the login credentials for our Neo4j instance. There is a [sample connection template available here](datasets/templates/neo4j-connection_template.json), but in general the format should look like this:
+
+```
+    {
+        "server_url": "neo4j+s://XXXXXXXX.databases.neo4j.io",
+        "database": "neo4j",
+        "auth_type": "basic",
+        "username": "neo4j",
+        "pwd": "<password>"
+    }
+```
+
+There is also a [helper Python script](helper-scripts/neo4j_connection.py) available which can convert a Neo4j Aura credentials file into the correct JSON format. 
+
 ## Set up your Dataflow job
 
 Once your template files are uploaded to the storage buckets you can continue on to configure and set up your Dataflow job. 
