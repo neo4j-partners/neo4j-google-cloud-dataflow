@@ -45,6 +45,8 @@ Cloud SDK uses the right project for all the commands in this notebook.
 
 ## Prepare your template files
 
+All of the documentation needed to create and configure a job specification file for BigQuery to Neo4j can be found [here](https://neo4j.com/docs/dataflow-bigquery/current/).
+
 [This notebook](notebook/neo4j_dataflow_bigquery.ipynb) will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
 
 You can also do this step manually. In order to deploy a Dataflow job for Neo4j you will need two JSON templates:
