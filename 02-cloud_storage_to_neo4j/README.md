@@ -3,7 +3,7 @@
 ## Overview
 In this section, we will set up a Dataflow job to extract and transform data from CSV files stored as objects in Google Cloud Storage and load them into a Neo4j graph database instance.
 
-Documentation for this job specification template can be found [here](https://neo4j.com/docs/dataflow-google-cloud/current/). 
+Documentation for this section can be found [here](https://neo4j.com/docs/dataflow-google-cloud/current/)
 
 ## Preparation
 For this part of the lab you will need a Google Cloud Platform account with permission and access to deploy the following services:
@@ -17,20 +17,46 @@ In this example we will use the [London public transport network](csv_files_for_
 
 The template files we will use for this example are located [here](./templates/)
 
-# Setup
-## Prepare your template files
+## Setup
+### Preparing the source CSV files 
+The data sources for this template need to be CSV files stored in Google Cloud Storage buckets.
 
-[This notebook](notebook/neo4j_dataflow_bigquery.ipynb) will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
+CSV files must fulfill some constraints in order to be used as data sources for the Google Cloud to Neo4j template:
 
-You can also do this step manually. In order to deploy a Dataflow job for Neo4j you will need two JSON templates:
+- they should not contain headers. Column names should be specified in the ordered_field_names attributes, and files should contain data rows only.
 
-1. A Dataflow job specification template. This template specifies where and how data is extracted from the sources and subsequently transformed and loaded into our target graph model. For this demo we will use [this job spec template](datasets/templates/transport_for_london/london_transport_job_spec_custom_query.json). 
+- they should not contain empty rows.
 
-2. A Neo4j connnection template. This template contans the login credentials for our Neo4j instance. There is a [sample connection template available here](datasets/templates/neo4j-connection_template.json), but in general the format should look like this:
+### Preparing the templates for Dataflow 
+
+In order to deploy a Dataflow job for Neo4j you will need two JSON templates:
+
+
+1. A __Dataflow job specification template__ which specifies the URI of the source files you've uploaded to Google Cloud Storage. This template will specify where to extract the data from and subsequently how to transform and load into our your graph data model in Neo4j. For this demo we will use [this job spec template](templates/london_transport_job_spec_custom_query_from_gcs.json). 
+
+The template should refer to the Google Cloud Storage URI in the sources section using following format:
+
+```
+  "sources": [
+    {
+        "type": "text",
+        "name": "tube_lines",
+        "uri": "gs://neo4j-datasets/dataflow-london-transport/gcs-to-neo4j/source-data/London_tube_lines_no_headers.csv",
+        "format": "EXCEL",
+        "delimiter": ",",
+        "ordered_field_names": "Tube_Line,From_Station,To_Station"
+    }
+```
+
+You can refer to our [demo template](templates/london_transport_job_spec_custom_query_from_gcs.json) for reference or refer to our [online documentation](https://neo4j.com/docs/dataflow-google-cloud/current/) for more details.
+
+[This notebook](notebook/neo4j_dataflow_bigquery.ipynb) will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. You can also do this step manually. 
+
+2. A __Neo4j connnection template__. This template contans the login credentials for our Neo4j instance. There is a [sample connection template available here](templates/neo4j-connection_template.json.sample), but in general the format should look like this:
 
 ```
     {
-        "server_url": "neo4j+s://XXXXXXXX.databases.neo4j.io",
+        "server_url": "neo4j+s://<instance-id>.databases.neo4j.io",
         "database": "neo4j",
         "auth_type": "basic",
         "username": "neo4j",
@@ -38,63 +64,7 @@ You can also do this step manually. In order to deploy a Dataflow job for Neo4j 
     }
 ```
 
-There is also a [helper Python script](helper-scripts/neo4j_connection.py) available which can convert a Neo4j Aura credentials file into the correct JSON format. 
-
-## Uploading your templates and CSV files to Google Cloud Storage 
-
-[ALL OF THE TEXT BELOW NEEDS TO BE UPDATED AND NEW SCREENSHOTS NEED TO BE MADE]
-
-The [London_stations](./csv/London_stations.csv) file contains data about public transport stations in London such as Station_Name, Zone, Postcode, and location coordinates which we will use to create our graph. 
-
-The [London_tube_lines](./csv/London_tube_lines.csv) file contains data we will use to determine the transit lines and connections between the stations. 
-
-1. Create Dataset: Go to the [BigQuery console](https://console.cloud.google.com/bigquery)in Google Cloud and right click on the three dots to the right of your project name, select "Create Dataset"
-![01-create_dataset](./images/01-setup_bq/01-create_dataset.png)
-
-
-2. Configure Dataset: Give the dataset a name, in this example we'll use *london_transport* for our dataset name.
-![02-configure_dataset](./images/01-setup_bq/02-configure_dataset.png)
-
-3. Create london_stations table: Go to your dataset in the BigQuery console and right-click on the 3 dots to the right of the name. Select "Create table". 
-![03-create_stations_table](./images/01-setup_bq/03-create_stations_table.png)
-
-4. Configure the london_stations table. Under "Source" select the dropdown menu under "Create table from" and select "Google Cloud Storage". 
-
-In the next box you can either paste in the URI to the *London_stations.csv* file in your Google Cloud Storage bucket or you can select "BROWSE" to navigate and select it. 
-
-Down below in the "Table" box give this table a name. In this example we'll use *london_stations* as the name of this table. 
-![04-configure_stations_table](./images/01-setup_bq/04-configure_stations_table.png)
-
-Scroll down a bit further to the "Schema" section. For this table we can select "Auto detect" but there is also an option to edit the schema manually (we'll do this with the next table)
-
-Once this is done, click the blue "Create Table" button on the bottom.
-![04b-auto_detect_schema](./images/01-setup_bq/04b-auto_detect_schema.png)
-
-To confirm that everything was created correctly, go back to the BigQuery console, select your new table and click on the "Schema" and "Preview" tabs.
-
-![04c-bq_schema](./images/01-setup_bq/04c-bq_schema.png)
-![04d-bq_preview](./images/01-setup_bq/04d-bq_preview.png)
-
-5. Configure the london_tube_lines table. Repeat steps 3 & 4 to come back to the table configuration screen. Once again select "Google Cloud Storage" as the data source and browse to or paste in the URI for the *London_tube_lines.csv* file in your cloud storage bucket. 
-
-We'll name this table "london_tube_lines" for this example. 
-![05-configure_tube_lines_table](./images/01-setup_bq/05-configure_tube_lines_table.png)
-
-Scroll down to the "Schema" section, this time we'll edit the schema manually. 
-
-Select "Edit as text" and type or paste in the column headers separated by a comma under row 1:
-
-```
-Tube_Line,From_Station,To_Station
-```
-
-05b-edit_tube_lines_schema
-![05b-edit_tube_lines_schema](./images/01-setup_bq/05b-edit_tube_lines_schema.png)
-
-Go back to the BigQuery console and select "Schema" and "Preview" on the newly created table to confirm.
-![05c-bq_schema2](./images/01-setup_bq/05c-bq_schema2.png)
-![05d-bq_preview2](./images/01-setup_bq/05d-bq_preview2.png)
-
+There is also a [helper Python script](../helper-scripts/neo4j_connection.pyhelper-scripts/neo4j_connection.py) available which can convert a Neo4j Aura credentials file into the correct JSON format. 
 
 ## Set up your Dataflow job
 

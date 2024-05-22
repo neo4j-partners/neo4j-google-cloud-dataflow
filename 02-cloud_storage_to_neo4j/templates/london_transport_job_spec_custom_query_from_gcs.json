@@ -7,7 +7,7 @@
     {
         "type": "text",
         "name": "stations",
-        "uri": "gs://neo4j-datasets/london-transport/csv_files/London_stations_no_headers.csv",
+        "uri": "gs://neo4j-datasets/dataflow-london-transport/gcs-to-neo4j/source-data/London_stations_no_headers.csv",
         "format": "EXCEL",
         "delimiter": ",",
         "ordered_field_names": "ID,Station_Name,OS_X,OS_Y,Latitude,Longitude,Zone,Postcode,Zone_original"
@@ -15,7 +15,7 @@
     {
         "type": "text",
         "name": "tube_lines",
-        "uri": "gs://neo4j-datasets/london-transport/csv_files/London_tube_lines_no_headers.csv",
+        "uri": "gs://neo4j-datasets/dataflow-london-transport/gcs-to-neo4j/source-data/London_tube_lines_no_headers.csv",
         "format": "EXCEL",
         "delimiter": ",",
         "ordered_field_names": "Tube_Line,From_Station,To_Station"
