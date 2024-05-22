@@ -43,69 +43,18 @@ This [tutorial](https://github.com/neo4j-partners/hands-on-lab-neo4j-and-vertex-
 1. Enter your project ID in the cell below. Then run the cell to make sure the
 Cloud SDK uses the right project for all the commands in this notebook.
 
-## Prepare your template files
+## Configure and Deploy a Dataflow Job
 
-All of the documentation needed to create and configure a job specification file for BigQuery to Neo4j can be found [here](https://neo4j.com/docs/dataflow-bigquery/current/).
+The Google Cloud to Neo4j Dataflow template currently supports two types of sources: BigQuery and Google Cloud Storage.
 
-[This notebook](notebook/neo4j_dataflow_bigquery.ipynb) will guide you through the steps of setting up a Google Cloud Storage bucket with the necessary template files uploaded to them. 
+The configuration and deployment is mostly the same regardless of which data sources are used. There are, however, a few differences that need to be taken into account in regards to data preparation and job specification configuration. 
 
-You can also do this step manually. In order to deploy a Dataflow job for Neo4j you will need two JSON templates:
+The following guides will walk you through the process of each:
 
-1. A Dataflow job specification template. This template specifies where and how data is extracted from the sources and subsequently transformed and loaded into our target graph model. For this demo we will use [this job spec template](datasets/templates/transport_for_london/london_transport_job_spec_custom_query.json). 
+1. [Loading data from BigQuery to Neo4j](01-bigquery_to_neo4j/README.md)
 
-2. A Neo4j connnection template. This template contans the login credentials for our Neo4j instance. There is a [sample connection template available here](datasets/templates/neo4j-connection_template.json), but in general the format should look like this:
+2. [Loading data from Google Cloud Storage into Neo4j](02-cloud_storage_to_neo4j/README.md)
 
-```
-    {
-        "server_url": "neo4j+s://XXXXXXXX.databases.neo4j.io",
-        "database": "neo4j",
-        "auth_type": "basic",
-        "username": "neo4j",
-        "pwd": "<password>"
-    }
-```
+At the end of this tutorial you will have a working graph of the London transit network loaded into an instance of Neo4j.
 
-There is also a [helper Python script](helper-scripts/neo4j_connection.py) available which can convert a Neo4j Aura credentials file into the correct JSON format. 
-
-## Set up your Dataflow job
-
-Once your template files are uploaded to the storage buckets you can continue on to configure and set up your Dataflow job. 
-
-1. **Go to the Dataflow console**
-- Select "Create New Job"
-- Give your job a name and select the region
-
-![01-name_region.png](images/01-name_region.png)
-
-2. **Click on the dropdown menu and type "neo4j"**
-- Select the "Google Cloud to Neo4j" template
-
-![02-select_template.png](images/02-select_template.png)
-
-3. **Configure Dataflow job specification template** 
-- Browse to your storage bucket and select your job spec template
-
-![03-configure_job_spec.png](images/03-configure_job_spec.png)
-
-4. **Configure the Neo4j connection template** 
-- Scroll down and open up the "Optional Parameters" section
-- Fill in the location of the Neo4j connections template file or if you are using Google Secret Manager, enter the name of the Secret ID. 
-- __NOTE: Although these two individual fields are "Optional", it is required to fill in one of them.__
-
-![04-configure_connections.png](images/04-configure_connections.png)
-
-5. **Scroll down to the bottom of the page and click "Run Job" and now wait for the job to finish (about 5-10 minutes for this demo)**
-
-![05-kickoff_job.png)](images/05-kickoff_job.png)
-
-6. **The job is complete once all of the stages turn green and the job status field says "Succeeded".**
-
-![06-job_succeeded.png)](images/06-job_succeeded.png)
-
-7. **Now you can log into the Neo4j instance and the graph is ready to explore!**
-
-![07-explore_the_graph.png)](images/07-explore_the_graph.png)
-
-8. You can also explore the graph using __Neo4j Bloom__.
-
-![08-explore_with_bloom.png)](images/08-explore_with_bloom.png)
+In a future tutorial we will explore the graph further using graph algorithms, analytics, and generative AI. 
