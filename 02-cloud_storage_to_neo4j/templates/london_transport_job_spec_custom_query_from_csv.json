@@ -1,0 +1,63 @@
+{
+  "config": {
+    "reset_db": true,
+    "index_all_properties": false
+  },
+  "sources": [
+    {
+        "type": "text",
+        "name": "stations",
+        "uri": "gs://neo4j-datasets/london-transport/csv_files/London_stations_no_headers.csv",
+        "format": "EXCEL",
+        "delimiter": ",",
+        "ordered_field_names": "ID,Station_Name,OS_X,OS_Y,Latitude,Longitude,Zone,Postcode,Zone_original"
+    },
+    {
+        "type": "text",
+        "name": "tube_lines",
+        "uri": "gs://neo4j-datasets/london-transport/csv_files/London_tube_lines_no_headers.csv",
+        "format": "EXCEL",
+        "delimiter": ",",
+        "ordered_field_names": "Tube_Line,From_Station,To_Station"
+    }
+  ],
+  "targets": [
+    {
+      "node": {
+        "source": "stations",
+        "name": "Station",
+        "mode": "append",
+        "transform": {
+          "group": true
+        },
+        "mappings": {
+          "labels": [
+            "\"Station\""
+          ],
+          "properties": {
+            "keys": [
+              {"ID": "station_id"}
+            ],
+            "strings": [
+              {"Station_Name": "name"},
+              {"Zone": "zone"},
+              {"Postcode": "postcode"}
+            ],
+            "unique": [],
+            "floats": [
+              {"Longitude": "longitude"},
+              {"Latitude": "latitude"}
+            ]
+          }
+        }
+      }
+    },
+    {
+        "custom_query": {
+          "source": "tube_lines",
+          "name": "Tube Lines",
+          "query": "UNWIND $rows as row MATCH (a:Station), (b:Station) WHERE a.name = row.From_Station AND b.name = row.To_Station CALL apoc.create.relationship(a, toUpper(row.Tube_Line), {}, b) YIELD rel as rel1 CALL apoc.create.relationship(b, toUpper(row.Tube_Line), {}, a) YIELD rel as rel2 RETURN rel1, rel2;"
+          }
+    }
+  ]
+}
