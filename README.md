@@ -51,10 +51,12 @@ The configuration and deployment is mostly the same regardless of which data sou
 
 The following guides will walk you through the process of each:
 
-1. [Loading data from BigQuery to Neo4j](01-bigquery_to_neo4j/README.md)
+1. [__Loading data from BigQuery to Neo4j__](01-bigquery_to_neo4j/README.md). This tutorial will show you how to create tables in BigQuery to use as data sources and configure a Dataflow job specification template to ETL the data into a knowledge graph in Neo4j
 
-2. [Loading data from Google Cloud Storage into Neo4j](02-cloud_storage_to_neo4j/README.md)
+2. [__Loading data from Google Cloud Storage into Neo4j__](02-cloud_storage_to_neo4j/README.md). This tutorial will walk you through preparing and uploading CSV files into a bucket in Google Cloud Storage and modifying the job specification template to include these as sources in your ETL job with Dataflow. 
 
 At the end of this tutorial you will have a working graph of the London transit network loaded into an instance of Neo4j.
+
+![08-explore_with_bloom.png)](01-bigquery_to_neo4j/images/02-dataflow_job/08-explore_with_bloom.png)
 
 In a future tutorial we will explore the graph further using graph algorithms, analytics, and generative AI. 
